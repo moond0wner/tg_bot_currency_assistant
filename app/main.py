@@ -15,16 +15,17 @@ load_dotenv()
 bot = Bot(token=os.getenv("TOKEN"), default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp = Dispatcher()
 
-dp.message.middleware(LoggingMiddleware())
-dp.message.middleware(ThrottlingMiddleware())
-dp.callback_query.middleware(ThrottlingMiddleware())
 
-dp.include_router(router)
 
 # Функция для запуска бота
 async def main():
-    await bot.delete_webhook(drop_pending_updates=True) # Запросы отправленные боту когда он был в оффлайне
-                                                        # не обрабатываются
+    await bot.delete_webhook(drop_pending_updates=True)
+    dp.message.middleware(LoggingMiddleware())
+    dp.message.middleware(ThrottlingMiddleware())
+    dp.callback_query.middleware(LoggingMiddleware())
+    dp.callback_query.middleware(ThrottlingMiddleware())
+
+    dp.include_router(router)
     await dp.start_polling(bot)
 
 
