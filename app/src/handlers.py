@@ -11,7 +11,7 @@ from aiogram.exceptions import TelegramBadRequest
 from dotenv import load_dotenv
 
 from .parsers.cb_course import parse_course, format_courses_for_telegram
-from .parsers.currency import list_currency_codes, convert_currency
+from .parsers.currency import currency_codes, convert_currency, currency_rates
 from .utils import keyboards as kb
 
 router = Router()
@@ -62,10 +62,10 @@ async def show_exchange_rates(message: Message):
     """Вызывает функцию которая парсит валюты, форматирует текст и отправляет"""
     try:
         await message.answer("Получаю курсы валют, ожидайте...⏳", reply_markup=kb.delete)
-        courses = await list_currency_codes()
+        courses = await currency_rates()
         await asyncio.sleep(1.5)
         if courses:
-            await message.answer("<b>Курсы валют: </b>", parse_mode='HTML')
+            await message.answer("<b>Курсы валют относительно USD: </b>", parse_mode='HTML')
             await message.answer(f'<b>{courses}</b>', parse_mode='HTML')
 
             await asyncio.sleep(1.5)

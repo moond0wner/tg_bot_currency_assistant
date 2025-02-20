@@ -10,7 +10,7 @@ class ThrottlingMiddleware(BaseMiddleware):
     """Уменьшает частоту обработки сообщений при спаме
     Если пользователь флудит /start или inline кнопками,
     то в течение 2 секунд запросы не обрабатываются"""
-    def __init__(self, time_limit: int=2) -> None:
+    def __init__(self, time_limit: int=1.5) -> None:
         self.limit = TTLCache(maxsize=10_000, ttl=time_limit)
 
 

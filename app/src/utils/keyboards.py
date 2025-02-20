@@ -7,7 +7,7 @@ from aiogram.types import (
 )
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-from ..parsers.currency import list_currency_codes
+from ..parsers.currency import currency_codes
 
 choice = ReplyKeyboardMarkup(
     keyboard=[
@@ -31,7 +31,7 @@ async def currency_buttons(page: int) -> InlineKeyboardMarkup:
     и с помощью KeyboardBuilder создаёт inline кнопки из этих кодов,
     с возможностью переключаться между ними"""
     try:
-        currencies = await list_currency_codes(show_exchange=False)
+        currencies = await currency_codes()
         if not currencies:
             return InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text='Возникла ошибка',
                                                                                callback_data='error')]])
@@ -44,7 +44,7 @@ async def currency_buttons(page: int) -> InlineKeyboardMarkup:
 
         keyboard = InlineKeyboardBuilder()
         for currency in currencies_on_page:
-            keyboard.add(InlineKeyboardButton(text=currency, callback_data=f'currency:{currency}'))
+            keyboard.row(InlineKeyboardButton(text=' — '.join(currency), callback_data=f'currency:{currency[0]}'))
 
         previous_page = page > 0
         next_page = end_index < len(currencies)

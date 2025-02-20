@@ -36,7 +36,7 @@ async def parse_course(url: str) -> dict:
 
 
 def format_courses_for_telegram(courses: dict) -> str:
-    """Форматирует  словарь для удобного чтения пользователем"""
+    """Форматирует словарь для удобного чтения пользователем"""
     if not courses:
         return "Нет данных о курсах валют."
 
@@ -46,4 +46,4 @@ def format_courses_for_telegram(courses: dict) -> str:
             formatted_lines.append(
                 f"{code}: {name}, {course}"
             )
-    return "\n".join(formatted_lines)
+    return "\n".join(sorted(formatted_lines))
