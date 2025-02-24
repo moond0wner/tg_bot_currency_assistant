@@ -12,7 +12,7 @@ from ..parsers.currency import currency_codes
 choice = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text="Курс валют к рублю 📈")],
-        [KeyboardButton(text="Курс валют 🧾")],
+        [KeyboardButton(text="Курс валют к доллару🧾")],
         [KeyboardButton(text="Конвертировать валюту 💸")],
         [KeyboardButton(text="О боте 👨‍💻")]
     ],
