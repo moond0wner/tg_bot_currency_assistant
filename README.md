@@ -1,5 +1,5 @@
 <h1>Телеграм-бот "Валютный помощник" - @currency_assistant_bot.</h1>
-[Демонстрация проекта](https://youtube.com/shorts/ToukIFht20M?feature=share)
+[![Демонстрация проекта](https://img.youtube.com/vi/ToukIFht20M/0.jpg)](https://youtube.com/shorts/ToukIFht20M?feature=share)
 <h2>———— Асинхронный, написан на Aiogram.</h2>
 <h2>———— Выдает информацию о курсе валют относительно рубля, о курсе валют относительно USD и умеет конвертировать сумму между двумя валютами.</h2>
 <h2>———— Продуманная модульная структура.</h2>
